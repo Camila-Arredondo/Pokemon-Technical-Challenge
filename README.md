@@ -1,1 +1,1 @@
-# Pokemon-Technical-Challenge
+# Pokemon

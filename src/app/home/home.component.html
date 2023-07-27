@@ -1,0 +1,138 @@
+<div class="image-background">
+<div class="image-container">
+    <img src="assets/logo.png" alt="Imagen" class="centered-image" />
+</div>
+
+<div class="container-fluid d-flex justify-content-center align-items-center">
+    <div class="row poke-card" style="max-width: 100% !important">
+        <div class="col-md-5">
+            <img data-poke-img class="poke-img" [src]="pokemonFavorite.foto">
+        </div>
+        <div class="col-md-7">
+            <div class="card-body">
+                <h5 class="card-title">Your favorite Pokémon is:</h5>
+
+                <h4 class="card-title">{{pokemonFavorite.nombre | uppercase}}</h4>
+                <p class="card-text">Base experience: {{pokemonFavorite.base_experience}}</p>
+                <p class="card-text">Weight: {{pokemonFavorite.weight}}</p>
+                <p class="card-text">Height: {{pokemonFavorite.height}}</p>
+                <p class="card-text"><small class="text-muted">Number in Pokedex: {{pokemonFavorite.id}}</small></p>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="search">
+<form >
+  <div class="input-group">
+    <span class="input-group-text" id="basic-addon3">Search for your Pokémon</span>
+    <input id="table-filtering-search" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" type="text" [formControl]="filter">
+  </div>
+</form>
+</div> -->
+
+
+
+
+<form>
+    <div class="mb-3 row">
+        <label for="table-filtering-search"  class="alert alert-info">Search for your Pokémon:
+        
+
+        <div class="col-xs-3 col-sm-auto">
+            <input id="table-filtering-search" class="form-control" type="text" [formControl]="filter" />
+        </div>
+    </label>
+    </div>
+</form>
+
+
+
+
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-md-6 col-lg-8">
+            <table class="table table-striped container text-center" style="height: 760px;">
+                <thead>
+                    <tr>
+                        <th>Favorite</th>
+                        <th (click)="sortPokemonByName()"
+                            [ngClass]="{'sorting-asc': sortOrderAscending, 'sorting-desc': !sortOrderAscending}"> Name
+
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let pokemon of datosTabla">
+                        <td>
+
+                            <div class="form-check">
+                                <button class="btn btn-warning btn-sm"
+                                    [ngStyle]="{'color': CheckFavorito(pokemonFavorite, pokemon) ?  'black': 'white'}"
+                                    (click)="FavoritePokemon(pokemon.url)">
+                                    <fa-icon [icon]="faStar"></fa-icon>
+                                </button>
+                            </div>
+
+                        </td>
+                        <td><img [src]="UrlFotoPokemon(pokemon)" style="width:48px" /> {{pokemon.name}}</td>
+                        <td>
+                            <button class="btn btn-primary btn-sm" (click)="VerPokemon(pokemon.url)"><fa-icon
+                                    [icon]="faEye"></fa-icon></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="d-flex justify-content-between p-2">
+
+                <label  class="alert alert-info" role="alert">Total: {{resultPokemon.count}} records</label>
+                <ngb-pagination [collectionSize]="resultPokemon.count" [(page)]="paginaActual" [maxSize]="4"
+                    [pageSize]="pageSize" (pageChange)="refreshPokemons()">
+                </ngb-pagination>
+            </div>
+        </div>
+
+
+        <div class="col-md-6 col-lg-4">
+            <div data-poke-card class="poke-card">
+                <div data-poke-name>Number in Pokedex: {{pokemonSeleccionado.id}}</div>
+                <div data-poke-img-container class="img-container">
+                    <img data-poke-img class="poke-img" [src]="pokemonSeleccionado.foto" />
+                    <span>{{pokemonSeleccionado.nombre | uppercase}}</span>
+                </div>
+
+                <div data-poke-name>Base experience: {{pokemonSeleccionado.base_experience}}</div>
+                <div data-poke-name>Weight: {{pokemonSeleccionado.weight}}</div>
+                <div data-poke-name>Height: {{pokemonSeleccionado.height}}</div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
+
+<footer>
+    <div class="alphabet-stats poke-letter">
+        <ng-container *ngFor="let letter of alphabetLetters">
+            <ng-container *ngIf="alphabetStats[letter] > 0">
+                <span (click)="filterByLetter(letter)" class="blue-letter">
+                    {{ letter }} ({{ alphabetStats[letter] }})
+                </span>
+            </ng-container>
+            <ng-container *ngIf="alphabetStats[letter] === 0">
+                <span>{{ letter }}</span>
+            </ng-container>
+        </ng-container>
+
+
+        <span (click)="filterByLetter('ALL')" class="blue-letter">
+            All ({{resultPokemonAll.results.length}})
+        </span>
+
+
+    </div>
+</footer>

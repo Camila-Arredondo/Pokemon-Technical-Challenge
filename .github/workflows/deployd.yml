@@ -1,0 +1,36 @@
+name: Construir y desplegar
+
+on:
+  push:
+    branches:
+      - main
+
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout del código fuente
+        uses: actions/checkout@v2
+
+      - name: Configurar el entorno de Google Cloud SDK
+        uses: 'google-github-actions/auth@v1'
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      - name: Configurar Docker
+        uses: docker/setup-buildx-action@v1
+
+      - name: Gcloud configure docker
+        run: |
+            gcloud auth configure-docker
+
+      - name: Construir imagen Docker
+        run: |
+          docker build -t gcr.io/proyecto1-386420/pokemon:${{ github.run_id }} .
+          docker push gcr.io/proyecto1-386420/pokemon:${{ github.run_id }}
+
+      - name: Desplegar a Cloud Run
+        run: |
+          gcloud run deploy pokemon --image gcr.io/proyecto1-386420/pokemon:${{ github.run_id }}  --region us-central1 --port 80 --allow-unauthenticated

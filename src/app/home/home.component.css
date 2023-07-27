@@ -1,0 +1,145 @@
+th.sorting-asc::after {
+  content: " ▲";
+}
+
+th.sorting-desc::after {
+  content: " ▼";
+}
+
+.blue-letter {
+  color: white;
+  cursor: pointer;
+}
+
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.centered-image {
+  max-width: 100%;
+  max-height: 200px;
+
+}
+
+footer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.alphabet-stats-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+}
+
+.alphabet-stats {
+  background-color: black;
+  border: 2px solid black;
+  box-sizing: border-box;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.alphabet-stats span {
+  cursor: pointer;
+}
+
+form {
+  width: 200px;
+  margin: 20px auto;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+}
+
+.poke-card {
+  position: relative;
+  height: fit-content;
+  font-family: 'Roboto Mono', monospace;
+  max-width: 300px;
+  border-radius: 4px;
+  color: #000;
+  text-align: center;
+  padding: 10px;
+  margin: 0 auto;
+  background-color: #FFF;
+  border: 1px solid black;
+}
+
+.poke-card::before {
+  content: '';
+  background: radial-gradient(black 33%, transparent 33%);
+  background-size: 3px 3px;
+  border-radius: 4px;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  z-index: -1;
+}
+
+.img-container {
+  position: relative;
+  width: 180px;
+  margin: 10px auto;
+}
+
+.poke-stats div {
+  display: flex;
+  justify-content: space-between;
+  align-content: space-between;
+  padding: 5px;
+  font-size: 18px;
+}
+
+.poke-types div {
+  padding: 5px;
+  margin: 5px;
+  border-radius: 4px;
+  border: 1px dashed black;
+}
+
+.poke-img {
+  width: 180px;
+  border-radius: 50%;
+}
+
+.poke-letter {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  background-color: black;
+  box-sizing: border-box;
+}
+
+.poke-favorite {
+  border: var(--bs-card-border-width) solid var(--bs-card-borde)
+  
+}
+
+.image-background {
+  background-image: url('/assets/fondo.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.input-group{
+  width: 400px;
+}
+.search{
+  display: flex;
+justify-content: center;
+height: 100px;
+
+}
