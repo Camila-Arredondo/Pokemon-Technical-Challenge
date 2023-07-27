@@ -7,8 +7,6 @@ import { PokemonInfo } from '../entity/pokemoninfo';
 import { pokemonSelect } from '../entity/pokemonselect';
 import { faCoffee, faEye, faStar } from '@fortawesome/free-solid-svg-icons';
 
-
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -39,7 +37,6 @@ export class HomeComponent implements OnInit {
     foto: "assets/poke-shadow.png",
     nombre: ".............",
     id: 0,
-    // habilidad: "",
     weight: 0,
     height: 0,
     base_experience: 0,
@@ -48,7 +45,6 @@ export class HomeComponent implements OnInit {
     foto: "assets/poke-shadow.png",
     nombre: "????????????",
     id: 0,
-    // habilidad: "",
     weight: 0,
     height: 0,
     base_experience: 0,
@@ -127,13 +123,11 @@ export class HomeComponent implements OnInit {
 
   VerPokemon(url: string) {
     this.apiService.getPokemonInfo(url).subscribe(pokemon => {
-      //this.urlphoto = pokemon.sprites.other['official-artwork'].front_default;
       
       this.pokemonSeleccionado = {
         foto : pokemon.sprites.other['official-artwork'].front_default ?? "assets/poke-shadow.png",
         nombre: pokemon.name,
         id : pokemon.id,
-        // habilidad : pokemon.abilities.ability['name'].name
         weight: pokemon.weight,
         height: pokemon.height,
         base_experience: pokemon.base_experience,
@@ -142,14 +136,11 @@ export class HomeComponent implements OnInit {
   }
 
   FavoritePokemon(url: string) {
-    this.apiService.getPokemonInfo(url).subscribe(pokemon => {
-      //this.urlphoto = pokemon.sprites.other['official-artwork'].front_default;
-      
+    this.apiService.getPokemonInfo(url).subscribe(pokemon => {      
       this.pokemonFavorite = {
         foto : pokemon.sprites.other['official-artwork'].front_default ?? "assets/poke-shadow.png",
         nombre: pokemon.name,
         id : pokemon.id,
-        // habilidad : pokemon.abilities.ability['name'].name
         weight: pokemon.weight,
         height: pokemon.height,
         base_experience: pokemon.base_experience,
